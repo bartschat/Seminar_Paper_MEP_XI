@@ -1,0 +1,1376 @@
+\nonstopmode
+
+\documentclass
+[
+    a4paper,
+    %german,
+    %twoside,
+    11pt
+]
+{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+%\usepackage[ngerman]{babel}
+\usepackage{enumerate}
+\usepackage[bottom]{footmisc}
+\usepackage{array}
+\usepackage{ntheorem}
+\usepackage{parskip}
+\usepackage[right]{eurosym}
+\usepackage{xcolor}
+\usepackage[hyphens]{url}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{theorem}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.5}
+\usepackage{csvsimple}
+\usepackage{fancyhdr}
+\usepackage{colortbl}
+\usepackage{bchart}
+\usepackage{amssymb}
+\usepackage{setspace}
+%\usepackage{showframe}
+\usepackage[left=4.0cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\pagestyle{plain}
+\rhead{\thepage}
+\sloppy
+
+\setlength{\unitlength}{1cm}
+%\setlength{\oddsidemargin}{0.3cm}
+%\setlength{\evensidemargin}{0.3cm}
+%\setlength{\textwidth}{15.5cm}
+%\setlength{\topmargin}{-1.2cm}
+%\setlength{\textheight}{24.7cm}
+\columnsep 0.5cm
+
+%\title{Seminararbeit}
+\selectcolormodel{gray}{
+
+\input{config.tex}
+%
+\newcommand{\link}[1]{\ref{#1} (S. \pageref{#1})}
+%
+\begin{document}
+%
+\begin{titlepage}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.3]{Images/wwulogo.jpg}
+    \end{figure}
+    \vspace*{3cm}
+    \begin{center}
+        \begin{huge}
+		\Arbeitstitel\\
+        \end{huge}
+        \vspace*{2.5cm}
+        \Arbeitsart\\
+        as part of the \\\Studiengang\\
+        at the \Hochschule\\
+        \vspace*{2.5cm}
+        Submitted by\\
+        \Autor\\
+        Matriculation No: \MatrikelNr\\
+        Email: \EmailAdresse\\
+        \vspace*{1.5cm}
+    \end{center}
+    \begin{tabular}{ll}
+    Chair:      &   \Lehrstuhl\\
+    Issued by:  &   \Themensteller\\
+    Supervisor:       &   \Betreuer\\
+    Start date:   &   \Ausgabedatum\\
+    Submission date:    &   \Abgabedatum\\
+    \end{tabular}
+\end{titlepage}
+%
+\pagenumbering{Roman}
+%
+\tableofcontents
+\addcontentsline{toc}{section}{Contents}
+\cleardoublepage
+%
+%\section*{Executive Summary}
+%\addcontentsline{toc}{section}{Executive Summary}
+%tbd.
+%
+%
+\section*{List of Abbreviations}
+\addcontentsline{toc}{section}{List of Abbreviations}
+\begin{tabular}{ll}
+    B       & billion(s)\\
+	  e.g.	  & 	exemplia gratia (for exampe) \\
+    et al.  &   et alia (and others)\\
+    etc.    &   et cetera (and so on)\\
+    f., ff. &   following page(s)\\
+    Ed.   	&   Editor\\
+    i.e.    &   id est  (that is)\\
+    M     	&   million(s)\\
+    no.		&   number \\
+    p.  	&	page\\
+    Vol.    &   Volume \\
+\end{tabular}
+
+\textbf{Declaration of Brand Name Usage}
+
+Company, product, and brand names mentioned in this seminar paper may be brand
+names or registered trademarks of their respective owners. The use of these brand
+names and / or trademarks in this seminar paper does not justify the assumption
+that rights of third parties do not apply. All mentioned brand names and trademarks
+are subject without restrictions to country-specific protective provisions and the
+property rights of their registered owners.
+\clearpage
+%
+%
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+\clearpage
+%
+\pagenumbering{arabic} \setcounter{page}{1}
+%
+\onehalfspacing
+\section{Introduction}
+\label{introduction}
+%
+``Video games are the future. From education and business, to art and
+entertainment, our industry brings together the most innovative and
+creative minds to create the most engaging, immersive and breathtaking
+experiences we've ever seen.'' - \emph{Michael D. Gallager (President
+and CEO of the Entertainment Software Association)}
+
+The video games market is regarded as being the fastest growing segment
+of the entertainment branch \cite{Hennig-Thurau2013} and current numbers
+heavily back this assessment: The yearly revenue for the global games
+market is estimated to be around 99 billion US\$ in
+2016 \cite{NewZoo2016}, while digital games alone made over 35 billion \EUR{}
+ last year. The compound annual growth rate is
+estimated to be around 7\%, breaking the 50 billion \EUR{} barrier in
+2020. \cite{Statista2016a} Mobile games alone are generating nearly 37
+billion US\$ in 2016 and are on their way to overtake the film industry
+as \cite{PWC2015} reports a yearly global box office revenue for 2015
+sneaking up to 40 billion \EUR{} while growing at just 5.7\%. The gamer
+community consists of more than 2.1 billion people worldwide nowadays.
+\cite{NewZoo2016}
+
+Entertainment company Sony has sold more than 40 million Playstation 4
+video game consoles since launching it in November 2013 \cite{Sony2016},
+including the most successful gaming console launch of all times with
+selling more than one million devices in the first 24 hours
+\cite{ShuheiYoshida2013}. Those are impressive numbers but they seem
+pretty lackluster compared to the most successful launch of an
+entertainment product ever, the release of Rockstar's smash hit
+Grand Theft Auto V. It reached more than one billion US\$ in revenues
+during its first three days, 800 million US\$ alone on launch day. In
+comparison, it took The Avengers movie 19 days to achieve the same numbers.
+\cite{Gamespot2013}
+
+This massive success has turned the video games industry into playing a
+pivotal role in everyone´s daily life \cite{ESA2016a} and inspired
+researchers all around the world to dig into it. \cite{Sun2016}
+investigate the effects of consumer heterogeneity on the video games
+market, \cite{Binken2009} look into the role of high quality software
+for hardware sales, while \cite{Shankar2002} and \cite{Clements2005}
+concentrate on indirect network effects(i.e.~hardware-software
+interdependencies), furthermore do \cite{Aoyama2003} approach gaming
+from a socio-cultural perspective. In their article
+\cite{Hennig-Thurau2013} introduce a conceptual framework for value
+creation in the video game industry and do place the gaming platform in
+the center of gravity, but there is no major focus on the determination
+of success factors for the gaming platforms themselves.
+
+This seminar paper aims to fill this gap and provide a comprehensive,
+conceptual framework to answer the question: ``Which ingredients turn a
+video game console into a successful platform for a specific target
+group?'' To create this framework I will first lay out the foundations
+by introducing the gaming industry's main characteristics, i.e. that it
+is a two-sided, hedonic market catering to different gamer personae as
+its target audience and experiences a regular soft reset every five to seven
+years with the introduction of a new console
+generation.\cite{Gallagher2002}
+
+I will then use the framework provided by \cite{Hennig-Thurau2013} as a
+starting point and expand it to establish a holistic picture of a video
+game platform (see figure \ref{fig:framework}) using the current state of
+scientific research. To conclude this paper I will apply the framework
+onto the the ``console war'' of the seventh console generation and
+discuss its limitations and highlight necessary future research.
+%
+\section{Foundations}
+\label{foundations}
+%
+Researching success factors is a common scientific
+practice\cite{Leidecker1984} in other branches like the film industry
+\cite{Hennig-Thurau2001}, supply chain management \cite{Power2001} or
+software development \cite{Reel1999}, but not as common in video games
+research thus opening interesting research opportunities.
+
+As a precondition for investigating the success factors of video game
+platforms we have to establish the characteristics of the video games
+industry. Video games and in consequence video game platforms are by definition
+hedonic products like movies as they deliver a
+multisensoric experience on an emotional level. The relevant criterion
+in the buyer's decision process is to evaluate if the video game
+platform delivers a desirable experience. \cite{Hirschman1982}
+
+There is an inherent need to categorize the potential buyers of video
+game consoles into targettable segments according to their individual
+and shared desired experiences. \cite{Kuittinen2007} and \cite{IGDA2006}
+identify casual gamers, core gamers and hardcore gamers, without those
+segments being mutually exclusive. The hardcore gamer is a highly
+competetive personality that prefers games requiring a high degree of
+skill (i.e.~hand-eye-coordination, low reaction times, tactics) and a
+steep learning curve. The casual gamer on the opposite side of the
+spectrum prefers low-involvement games, that can be, but not always are, played with a lower
+time investment. There happen to be a lot of casual gamers playing ``casual games'' with a ``hardcore'' time
+investment. \cite{Kuittinen2007} The core gamer hovers between those
+extremes. \cite{Scharkow2015} (see figure \ref{fig:personae})
+But all gamer personae have a common denominator in terms of what they expect
+from their gaming platform of choice: an enjoyable experience.
+
+\begin{figure}[ht]
+\centering
+    \begin{subfloat}
+        \includegraphics[scale=0.18]{Images/gamer_personae_1a}
+    \end{subfloat}
+    \begin{subfloat}
+        \includegraphics[scale=0.18]{Images/gamer_personae_2a}
+    \end{subfloat}
+    \caption{Matrix of different gamer personae/Source: Own design based on
+    \cite{Kuittinen2007}, \cite{IGDA2006}, \cite{Juul2009}}
+    \label{fig:personae}
+\end{figure}
+
+\cite{KatzMichaelL.1994} describe in detail the indirect network effects
+that exist in system markets like the video games industry. A bigger
+installed base, i.e. more consoles sold to gamers, leads to a greater
+variety in software, i.e. more games available for said gamers, a higher
+software quality, better games, and by this increasing the value of the
+gaming platform for the consumer. Additional direct network effects are
+the foundation of \cite{Marchand2016} where the approach is taken from
+the opposite direction, i.e.~how to use the software to counter
+lifecycle decline. So the software-hardware interdependency is a given fact
+in the video games industry.\cite{Clements2005}
+
+Another key feature defining the video game console market is the
+existence of the ``console generations'', that effectively lead to a
+soft reset when the main players introduce their new platforms in a
+timeframe of about 12 to 24 months. This ``soft reset'' is fueled by
+technological innovation \cite{Orland2013}(following ``Moore's law''
+\cite{Moore1965}). Until this day there have been eight console
+generations (see figure \ref{tab:generations}) entering the market and
+being part of the ``console wars'' in which they battle for market
+domination during their lifecycles. \cite{EncyclopediaGamia2016} As the
+definition of a console generation is nothing that adheres to scientific
+criteria, I accept and use the common timeframes like they are stated on
+\cite{Wikipedia2016} and shown in figure \ref{tab:generations}.
+%
+\begin{figure}[h]
+  \small
+  \centering
+    \begin{tabular}{  l  l  l }
+    \hline
+        Generation  &   Timespan    &   Main Competitors    \\ \hline \hline
+        1&  1972-1980   &   Magnavox Odyssey, Coleco Vision \\
+        2&  1976-1992   &   Atari 2600, Mattel Intellivision    \\
+        3&  1983-2003   &   Nintendo Famicom/NES, Sega Master System, Atari 7800    \\
+        4&  1987-2004   &   Super Famicom/SNES, Sega Genesis, PC Engine, Neo Geo    \\
+        5&  1993-2005   &   N64, Sony Playstation, Sega Saturn, Atari Jaguar \\
+        6&  1998-2013   &   Dreamcast, PlayStation 2, Gamecube, Microsoft XBox  \\
+        7&  2005-2016  &   Wii, PlayStation 3, XBox 360    \\
+        8&  2012-today  &   Wii U, PlayStation 4, XBox One  \\ \hline
+    \end{tabular}
+    \caption{The eight console generations and their main competitors/Source: Own design based on \cite{Wikipedia2016}}
+    \label{tab:generations}
+\end{figure}
+
+\cite{Hennig-Thurau2013} propose a framework of value creation in the
+video game industry in which the gaming platform is the center of
+gravity and part of the vertical path of the so called ``gaming
+environment''. I will now zoom in to develop a conceptual framework for
+the determination of the needed ingredients to turn a video game console
+into a successful gaming platform.
+%
+\section{Developing a conceptual framework}
+\label{developing-a-conceptual-framework}
+%
+\subsection{Overview}
+\label{overview}
+%
+Piling on the foundational characteristics of the video games industry
+and the framework of \cite{Hennig-Thurau2013} I constitute the basic
+building blocks for a conceptual framework to determine success factors
+for video game consoles: The hardware-software interdependency according
+\cite{KatzMichaelL.1994} and \cite{Clements2005} provides the first two
+entities: hardware and software, heavily depending on and influencing
+each other.
+
+This paper introduces a third column, value added digital services. As
+\cite{CapGemini2015} state, the digital transformation of the business
+world is ``a fact of life and a sweeping force for business change''.
+Ignorance bears the potential of being victim to the ``innovator's
+dilemma''. \cite{christensen2003innovator} The positive influence of
+value added services in other markets like cell networks \cite{Kuo2009},
+messaging apps as \cite{Line} and digital music distribution
+\cite{Bockstedt2006} has been demonstrated as well as scientifically
+explored and leads to the conclusion that they will also play a vital
+role in the success of gaming platforms. These digital services depend
+on the console hardware as a basic layer and on the available software
+which they expand upon.
+
+The value proposition of the video game platform as a hedonic product is
+to provide the gamer with a highly desirable joyful experience.
+Enjoyment in the gamer's perspective stems from the ability of the
+gaming system (hardware, software and value added services) to provide
+an immersive flow experience. The concept of immersion is still not
+fully explored, but can be understood as a lack of awareness of time and
+space of the real world and being higly involved in the gaming
+environment. \cite{Jennett2008} Immersion is also a key component in
+enabling the player to experience the feeling of ``flow''.\cite{Sweetser2005}
+
+The three entities hardware, software and value added digital services
+are the ingredients of the video games platform that has to be
+positioned by the producer in a way that the brand image and its value
+proposition, the enjoyable experience, are highly congruent with the
+subjective expectations of the targeted gamer/consumer segment in order
+to be highly relevant for the consumer's behavior. The process of
+positioning will not be discussed in detail in this paper as it is out
+of its scope and sufficiently covered in literature. \cite{Aaker1982} \cite{Feddersen2010}
+
+The combination of the before mentioned items including the positioning
+process and the desired experience leads to the conceptual framework as
+shown in figure \ref{fig:framework}. The ingredients will be
+individually explored in detail in the following chapters.
+%
+\begin{figure}[ht!]
+    \includegraphics[scale=0.55]{Images/Framework_Entwicklung_4}
+    \caption{Conceptual comprehensive framework for the determination of success factors for video game platforms/Source: Own design}
+    \label{fig:framework}
+\end{figure}
+%
+\subsection{Hardware}
+\label{hardware}
+%
+As immersion is one of the main components of games enjoyment, it
+constitutes the need to identify a way to create the feeling of
+immersion for the gamer. \cite{Steuer1992} uses the term
+``telepresence'' to describe the experience of the player of being
+timely and spatially present in a mediated environment, i.e.~the ``game
+space'', and losing awareness of the real environment, i.e.~the ``player
+space''. Additionally to get into a state of flow during the gaming
+experience the player must be able to feel in full control of the action
+on the screen. \cite{Sweetser2005} So the video game platform has to
+equip him with an effective and efficient control interface to enable a
+high degree of interactivity. \cite{Skalski2011}
+%
+\subsubsection{Immersion powered by high-performance hardware}
+\label{immersion-powered-by-high-performance-hardware-1p}
+%
+One way to support the feeling of being present in a simulated environment,
+i.e.~the game world, is the use of realistic three-dimensional gamescapes powered by
+modern hardware that make it possible to seamlessly switch between gameplay
+and storytelling and by this creating the necessary suspension of disbelief
+that pulls the player into the game space. \cite{Kuo2016} In the first six
+console generations improving the quality of graphics and sound to facilitate a more immersive
+gameplay by providing a way of experiencing spatial presence \cite{Weibel2011}
+has been a main driver for technological innovations in gaming platforms and
+also enables new challengers to successfully enter the market when a console generation change
+takes place, as Sony demonstrated with the first Playstation.\cite{Gallagher2002}
+
+The player's expectations are strongly interlinked with his gamer
+persona and define the amount of performance needed. Core and
+hardcore gamers expecting highly involving and complex games
+are the right target segment for high fidelity graphics and
+bombastic sound. Casual gamers require gaming experiences that are
+highly accessible. Accessibility can be achieved by using less complex
+graphics leading to an easier visual acquisition of relevant game
+information. Immersion and accessibility through simplicity are not
+mutually exclusiv as the game Tetris demonstrates. The clear design is
+easy to understand and does not require a powerful platform.
+Nevertheless, a lot of Tetris players are ``sucked into'' the game, lose
+their awareness of time and space in the real word and are immersed in
+the game space. \cite{Jennett2008} This leads to the conclusion that
+high graphic and sound standards can play an important role in providing
+immersive game experiences on video game platforms, but they are not
+required, as shown in figure \ref{fig:screenshots} which compares the
+graphics quality of Tetris with the major success title GTA V, that was
+developed with the core gamer in mind. I assess that hardware
+capabilities can only offer the foundation for such experiences but
+without the matching games this offer will be in vain. It is required to
+correlate the targeted gamer segment with the hardware used to construct
+the gaming platform.
+%
+\begin{figure}[ht!]
+ \centering
+    \begin{subfloat}
+        \includegraphics[scale=1.0]{Images/GB_Tetris}
+    \end{subfloat}
+    \begin{subfloat}
+        \includegraphics[scale=0.45]{Images/gtav}
+    \end{subfloat}
+    \caption{Screenshots of Tetris and GTA V/ Source: Nintendo/Rockstar Games}
+    \label{fig:screenshots}
+ \end{figure}
+%
+Targetting the casual gamer segment with gaming platforms not conforming
+to the traditional ``race of arms'' is a strategy that evolved in the
+last two generations, mainly driven by the Nintendo Wii. \cite{Juul2009}
+Having a look how the amount of system memory, one of the main factors
+defining graphical complexity, increased over the last console
+generations shows Nintendo breaking away in Generation
+Seven, after more than two decades of being on par with the competition.
+(See figure \ref{fig:consoleram}) This development correlates with
+shifting the focus away from the core gamer segment towards the casual
+segment as described in \cite{Juul2009}.
+%
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+       \begin{semilogyaxis}
+          [
+             width=\linewidth*.65, % Scale the plot to \linewidth
+              grid=major,
+              grid style={dashed,gray!30},
+              xlabel=console generation, % Set the labels
+              ylabel=RAM in bytes,
+              legend pos = north west,
+              x tick label style = {rotate = 0, anchor=north, /pgf/number format/1000 sep= },
+              y tick label style = {/pgf/number format/1000 sep= },
+              xtick distance = 1,
+              minor x tick num = 1,
+              ymin = 0, xmin = 2.5,
+              ymax = , xmax = 8.5,
+              legend entries = {$Sony$, $Microsoft$, $Nintendo$,$Sega$}
+          ]
+          \addplot table [col sep=comma, x = Generation, y = S_RAM]{ConsoleRAM.csv};
+          \addplot table [col sep=comma, x = Generation, y = MS_RAM]{ConsoleRAM.csv};
+          \addplot table [col sep=comma, x = Generation, y = N_RAM]{ConsoleRAM.csv};
+          \addplot table [col sep=comma, x = Generation, y = SEG_RAM]{ConsoleRAM.csv};
+       \end{semilogyaxis}
+    \end{tikzpicture}
+    \caption{System memory of video game platforms/Source: Own design based on \cite{Wikipedia2016}}
+    \label{fig:consoleram}
+\end{figure}
+%
+\subsubsection{Game Flow enabling control interface design}
+\label{game-flow-enabling-control-interface-design}
+%
+The control interface, usually a gamepad or joystick, is the defining
+element of the interaction between the gamer and the game itself.
+\cite{Kelechava2015} Sony rated the importance of this interface so
+high that during the Playstation 4 launch event they did not bother
+to show the console itself, but just introduced the gamepad. \cite{Stuart2016}
+
+Over time the control interfaces evolved from the simple digital, one
+button joystick of the Atari 2600 into complex devices like the Xbox 360
+Gamepad with its 11 buttons and 6 analogously controlled axis of
+maneuver or the Wii U Gamepad that incorporates an additional touch display.
+(See figure \ref{fig:buttons} in appendix \ref{app:figures} and figure
+\ref{fig:controllermatrix} below) \cite{Brunner2013}
+%
+\begin{figure}[ht!]
+\centering
+    \includegraphics[scale=0.3]{Images/controllermatrix_2}
+    \caption{Rising complexity of video game control interfaces/Source: Own design}
+    \label{fig:controllermatrix}
+\end{figure}
+%
+In order to gain the ability to target a specific gamer segment with the
+according controller design, there has to be a way of correlating
+properties of controllers to the desired experience of the targeted
+gamer persona. To solve this issue I propose the classification of
+control devices according figure \ref{fig:controllerclassification}. The
+table in figure \ref{tab:controllerclassification} applies the
+classification to some exemplary controllers and identifies the focussed
+gamer personae.
+
+For ease of understanding figure \ref{tab:controllerclassificationterms}
+provides the definitions and the according references in literature. As
+an example one can imagine playing a golf simulation with either
+a) classic gamepad or b) the Wiimote. The classic gamepad is
+artificially mapped and imitating the actions on screen via button
+presses, i.e.~press button ``A'' to start the swing, press it again to
+determine the amount of power, press a third time to finally swing the
+bat and use one of the analog sticks to control the golf ball's spin. In
+contrast the Wiimote offers an intuitive imitation approach, as the player's actual movement
+resembles the on screen action as closely as possible. It is also a
+showcase for natural mapping because the use of the controller
+ correlates with a high degree to the real life movements
+performed while playing golf. Natural mapping has been shown to increase
+the feeling of spatial presence in the game environment, thus
+facilitating immersion effects, and leading to a high enjoyment factor.
+\cite{McGloin2011}
+
+While \cite{Kelechava2015} rates controller design evolution as not
+being significantly improved from one generation to the next, I consider
+it as a vital component of modern video game platform design,
+especially in the process of positioning the platform for a specific
+target audience by offering the right mixture of
+complexity/accesibility, type of control and mapping to increase gamer
+enjoyment and immersion.
+
+\begin{figure}[ht!]
+\centering
+    \includegraphics[scale=0.3]{Images/controllerclassification_2}
+    \caption{Classification matrix for control devices/Source: Own design based on \cite{Jenson2008}, \cite{Skalski2011} and \cite{McGloin2011}}
+    \label{fig:controllerclassification}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \small
+    \begin{tabular}{  l  p{5cm}  p{4cm}  }
+      \hline
+        Term        &   Definition  &   Reference   \\ \hline
+        Mapping     &   how are the performed actions of the gamer connected to corresponding changes in the game space? &   \cite{Steuer1992}\\
+                    &   &   \\
+        Natural Mapping & matching the action performed by the gamer and the natural action as closely as possible & \cite{Skalski2011}, \cite{McGloin2011}, \cite{Steuer1992}\\
+            &   &   \\
+        Artificical Mapping &   arbitrary and completely unrelated mapping of gamer action to the function performed & \cite{Skalski2011}, \cite{McGloin2011}, \cite{Steuer1992}\\
+            &   &   \\
+        Simulation  &   translation of  the player's input into a (character) action on screen& \cite{Jenson2008}\\
+            &   &   \\
+        Imitation   &   the player´s imitative action corresponds to the action on screen& \cite{Jenson2008}\\
+            &   &   \\ \hline
+    \end{tabular}
+    \caption{Control device classification terms in literature/Source: Own design}
+    \label{tab:controllerclassificationterms}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \small
+    \begin{tabular}{  l  l  l l  l l }\hline
+        Controller      &   Type of Control &   Mapping         &   Complexity  &   Precision   & Focus\\ \hline \hline
+        NES Gamepad     &   Imitation       &   artificial       &   low         &   medium      & Core\\
+        XBox 360 Gamepad&   Imitation       &   artificial      &   high        &   high        & Core\\
+        Wii U Gamepad   &   Imitation       &   artificial      &   high        &   medium      & Core\\
+        Wiimote         &   Simulation      &   natural\footnotemark			&  medium      &   low/medium  & Casual\\
+        DanceMat        &   Simulation      &   natural         &   low         &   high        & Casual\\
+        FlightStick     &   Simulation      &   natural         &   high        &   high        & Hardcore\\
+        GuitarHero Controller&  Simulation  &   natural         &   low         &   medium/high & Casual\\ \hline
+    \end{tabular}
+    \caption{Classification of exemplary controllers/Source: Own design}
+    \label{tab:controllerclassification}
+\end{figure}
+
+\footnotetext{Only when natural mapping is used by the game, otherwise the Wiimote is used with an artifical mapping.}
+
+\subsection{Software}
+\label{software}
+%
+\subsubsection{Software variety and network effects}
+\label{network-effects}
+%
+Network effects are an established topic in scientific literature and describe
+how an increased usage of a product leads to an increased value for all consumers
+or users of that product. \cite{Katz1985} The classic example for this kind of
+pattern, a direct network effect, is a telephone network. The value for each
+network member, who owns a telephone that is connected to the network, increases
+with each new member, who adds his telephone. \cite{Rohlfs1974}
+
+Additionally \cite{Economides1992} introduced the concept of indirect network
+effects, that describes how increased usage leads to additional products that
+indirectly increase the value of the original product, i.e. the more games
+become available for one platform the more value it offers to the consumer.
+
+Indirect network effects are also the basis for the fact that the video games
+(platform) market is a two-sided market. \cite{Rochet2003} Figure \ref{fig:networkeffects}
+shows the relationships that exist between the players of the video games market under
+the assumption that there is only one platform. A large installed number of platforms
+attracts software developers that offer an increasing number of games to the consumers.
+A huge variety of available software is attractive for gamers that currently are not
+owning the games platform and so become new customers for the platform owner and
+the game developers at the same time.
+
+\cite{Rochet2003} explain the business model of the video games platform producer/owner
+by establishing two segments: The \emph{loss-leader/break-even segment} consists of the platform
+buyers. Video game consoles usually are sold at such a retail price that losses are
+taken into account with the intention to quickly increase the installed base. This
+method is called penetration pricing. \cite{Liu2010} To achieve his economical goals
+the platform owner needs the \emph{subsidizing segment} to generate positive cash flows. This segment consists
+of the game developing studios and/or the game publishers. They have to pay a royalty fee
+for every sold game. \cite{Rochet2003} On the other hand, for the developers the subsidizing
+segment are the consumers that buy the games and by that subsidize the loss-leader segment
+consisting of the platform owner.
+
+\begin{figure}[ht!]
+\centering
+    \includegraphics[scale=0.3]{Images/networkeffects_2}
+    \caption{Network effects in the video games console market/Source: Own design}
+    \label{fig:networkeffects}
+\end{figure}
+
+Having a look at the launch lineups of the current generation's video game consoles, the
+Sony Playstation 4, the Microsoft XBox One and the Nintendo Wii U in figure \ref{tab:gen8sales}
+reflects and confirms the influence of network effects as described above, with the Playstation 4
+leading the field by a large margin concerning the number of available games and the number of units sold.
+
+\begin{figure}[ht!]
+    \centering
+    \small
+    \begin{tabular}{l l l l}
+      \hline
+                        		 & Playstation 4& Xbox One  & Wii U \\ \hline \hline
+            Titles availabe  	 & 771          & 462       & 366    \\
+            Units sold		     & 45.3M        & 23.5M    & 13.5M \\ \hline
+    \end{tabular}
+    \caption{Correlation of software availability and consoles soldin Generation Eight/Source: Own design based on \cite{Vgchartz.com2016}}
+    \label{tab:gen8sales}
+\end{figure}
+
+Concluding the topic of network effects I determine the need for a high number of
+available games offering a certain amount of variety and choice to the gamers in order
+to make a video games platform successful. Simultaneously there is an inherent need
+for a particularly sized installed base before it becomes attractive for a game developer
+to commit himself to a gaming platform.
+%
+\subsubsection{Looking for the system sellers - The need for high quality software}
+\label{looking-for-the-system-sellers}
+%
+Besides indirect and direct network effects as discussed above, a video game
+platform does not only need a certain amount of variety regarding the available software, but the perceived software quality also plays an important role in its success. \cite{Binken2009} showcase that ``superstar games'' are system sellers, as 1 in 5 buyers (in the six month period after the game launched) of a superstar game also purchases the hardware necessary to play that game, effectively making it a system seller. Following this argumentation there should be an obvious correlation between the success of a video games platform and the amount of high quality software available.
+
+The current, eighth, generation of video games consoles consisting of the Sony Playstation 4, the Microsoft XBox One and Nintendo's Wii U, is an excellent example that high quality games lead to high sales numbers of the platform starting with the average quality of their respective launch lineups to the number of currently available superstar titles with an average rating of more than 85\%. Figure \ref{tab:gen8launchquality} depicts the lineup qualities and shows that the Playstation 4 launch lineup offered the highest median rating and also the highest number of games rated 85\% and higher. This trend continues as figure \ref{fig:gen8quality} clearly displays the domination of the Sony platform qualitywise.
+%
+\renewcommand{\bcfontstyle}{}
+\begin{figure}[ht!]
+    \centering
+		\begin{bchart}[step=5,max=45,width=10cm]
+			\bcbar[label=PS 4 launch,color=gray]{5}
+			\bcbar[label=PS 4 total,color=gray]{42}
+			\smallskip
+			\bcbar[label=XBox One launch,color=gray]{2}
+			\bcbar[label=XBox One total,color=gray]{14}
+			\smallskip
+			\bcbar[label=Wii U launch,color=gray]{3}
+			\bcbar[label=Wii U total,color=gray]{11}
+			\smallskip
+		\end{bchart}
+    \caption{Launch and overall numbers of superstar games on the Generation 8 platforms/Source: Own design based on data from \cite{Gamerankings2016}, see figures \ref{tab:gen8launchlineup} - \ref{tab:xbonesuperstars} in Appendix \ref{app:figures}}
+    \label{fig:gen8quality}
+\end{figure}
+%
+\begin{figure}[h]
+    \centering
+    \small
+    \begin{tabular}{l r r r}
+      \hline
+                        & Playstation 4 & Xbox One  & Wii U \\ \hline \hline
+            Titles      & 25            & 22        & 26    \\
+            Median      & 75.96         & 74.59     & 71.21 \\
+            Mean        & 74.24         & 68.76     & 63.36 \\
+    \textgreater 85     & 5             & 2         & 3     \\
+    \textgreater 80     & 5             & 2         & 6     \\
+    \textless 65        & 3             & 4         & 4     \\
+    \textless 50        & 2             & 2         & 7     \\ \hline
+    \end{tabular}
+    \caption{Launch lineup quality of the eighth console generation/ Source: Own design based on data from \cite{Gamerankings2016}, see figure \ref{tab:gen8launchlineup} in Appendix \ref{app:figures}}
+    \label{tab:gen8launchquality}
+\end{figure}
+%
+This comparison of the Wii U, the XBox One and the Playstation 4 regarding the number of superstar games confirms one more of the findings of \cite{Binken2009}. Consumers have to have the perception that the introduction of those highly desirable top notch games is not a fluke but that there will be a steady supply of them because otherwise the platform will be considered as dried out. This leads to the conclusion that a platform producer should invest in a continuous supply of high quality games to a) assure the consumer, that the platform will be successful and b) by this to increase hardware sales.
+
+Another aspect to focus on is the way superstar games target different audiences
+as they are compiled with different gamer personae in mind. Sony obivously positions
+the Playstation 4 as a platform for core and hardcore gamers by using
+ high-performance hardware, a complex controller and a games library set up to satisfy those gamer types.
+Nearly all of the superstar games listed in figure \ref{tab:ps4superstars} are
+from genres that appeal to core gamers: fast paced action games (GTA,
+Uncharted), time-consuming RPGs (The Witcher 3, Dark Souls 3) or competitive
+online shooter games (Titanfall, Overwatch) reflecting Sony´s excellent
+positioning strategy. On the other hand the Nintendo Wii U, see figure
+\ref{tab:wiiusuperstars}, offers far less superstar games and those do not show
+a clear positioning strategy software-wise.
+
+Consolidating the matter of superstar software means to acknowledge the fact
+that a successful video games platform depends on
+its superstar games as system sellers. Gaining exclusivity of superstar games
+is a favorable situation and not only increases the producer's own hardware
+sales but also denies the competitors to increase their sales numbers with these titles.
+\cite{Shapiro1998}, \cite{Binken2009}
+%
+\subsection{Value added digital services}
+\label{value-added-digital-services}
+%
+Today all video game console producers act as digital service providers, offering their customers
+a wide range of digital services including, but not limited to: digital software stores, social
+networks, multiplayer gaming, achievement systems, cloud savegames and player communication via chat and voice.
+The services can be differentiated in free and paid ones. Nintendo gives free access to all
+digital services within its Nintendo Network \cite{Nintendo2016a}, while Sony, Playstation Plus, and Microsoft,
+XBox Live Gold, require the gamer to subscribe to the premium version of their networks to gain
+the possibility to use all services while at the same time offering "real value"
+by making a certain amount of games available for free to their subscribers.
+\cite{PlaystationPlus2016}, \cite{XBoxLiveGold2016} These games are only playable
+while maintaining an active subscription, adding another incentive for
+continuous membership.
+
+Especially the possibility to play games competitively or cooperatively with other players via the internet
+is a huge value for many gamers as it offers another option to experience flow and immersion
+as well as social interaction. \cite{Hsu2004}  The social interaction itself is an important tie between
+the virtual and the real world, as friendships can form online and transfer into the real world or vice versa
+as shown by \cite{Domahidi2014} and \cite{Trepte2012}. This way social value is
+added to the value proposition of the games platform. From the platform producer's perspective multiplayer
+gaming offers the benefit of direct network effects, especially in the later phases of a platform´s lifecycle.
+A high installed base of a mature platform can stimulate high sales numbers of online multiplayer games which
+generate profit in the form of royalties for the platform owner \cite{Marchand2016} and additionally generating
+further revenues if, like Sony and Microsoft, the platform owner/service provider requires a subscription
+to access these online multiplayer functions.
+
+Another element that is a part of social gaming is player engagement by using
+achievement systems. Achievements are a virtual reward-system for in-game feats of the
+player collected in a trans-game service provided by the platform owner.
+\cite{Jakobsson2011} and \cite{Hamari2011} These achievements can serve different purposes for the
+gamers: comparing themselves with and competing against their friends, using
+them as a kind of gaming history or by playing a kind of meta-game by trying
+to collect a maximum amount of achievements and expressing themself by demonstrating
+their high gaming skills. \cite{Jakobsson2011} By providing these different
+benefits to the customer, achievement systems are an important part in the
+platform owner's services portfolio.
+
+A major element of the digital services networks the platform producers operate
+is digital content distribution. All three players offer non-game content like
+video streaming, which will not be discussed in this paper, but also can be of high value to
+the customers. Digital games distribution is comparable to digital distribution
+of software and movies and offers benefits to the platform providers and the
+gamers. The provider is able to use digital distribution to fend off software
+piracy to some extent. \cite{Danaher2010} found out, that the non-availability
+of digitally distributed media is a possible driver for piracy in the movie
+market and it seems sensible to apply this result to games as well. At the same
+digital games distribution is a mean to minimize media production and logistics
+costs, as well as retailer listing fees and so raising the economic benefits for
+the content provider. This does as well apply to third party game developers
+that have to share their income with the games platform owner providing the
+sales channel.
+
+There are some requirements, mainly on the technical-functional side, that are pre-requisites for a successful
+value added digital service network that generates real value to the gamers. First and foremost reliability
+and stability have to be ensured as \cite{Kuo2009a} demonstrates
+for value added services in mobile networks and these findings seem adoptable for
+value added services in gaming platforms. Recent developments show that these requirements
+cannot always be met due to technical failures, see \cite{Jones2016} and \cite{Grubb2016}, or due to coordinated
+attacks, so called DDoS attacks \cite{Walton2015} against which appropriate
+counter measures are hard to develop.
+
+For the technical standards that have to be met in multiplayer games \cite{Pinelle2009}
+developed a set of heuristics that describe in detail the problems occuring in networked multiplayer games and how
+to avoid them. In figure \ref{tab:networkedgameheuristics} those heuristics are listed that can be allocated to the
+area of responsibility of the platform owner. The factor of game-based delay is only partly manageable by the
+service provider as the internet connection of the gamer plays an important role as well as the routing of the
+network packets to the gaming infrastructure. Nevertheless delays should be minimized as lag can lead to a
+disruption of flow and immersion, see \cite{Chen2006} and \cite{Ries2008}, two
+of the main factors that make up a good and desirable gaming experience.
+
+\begin{figure}[h]
+    \centering
+    \small
+    \begin{tabular}{l l }
+      \hline
+      1.      &     simple session management\\
+			2.      &     flexible matchmaking\\
+			3.      &     appropriate communication tools\\
+			4.      &     support social interaction\\
+			5.      &     reduce game-based delay\\
+			6.      &     manage bad behaviour\\
+      \hline
+    \end{tabular}
+    \caption{Networked Game Heuristics allocated to the platform owner/Source: based on \cite{Pinelle2009} }
+    \label{tab:networkedgameheuristics}
+\end{figure}
+
+To close up the topic of digital services I conclude that a successful gaming
+platform needs a highly reliable digital service network with a
+wide range of provisioned services catering to the needs of and creating
+value for its specific target audience. It has to be further investigated
+which services components are suited to increase the perceived value of the
+offered services for the different gamer personae.
+%
+\subsection{Framework summary}
+\label{framework-summary}
+The aim of this seminar paper was the development of a conceptual framework
+for the determination of success factors of video game consoles. In the
+previous chapters I described the success factors based on current
+scientific research as far as it was available (see chapter \ref{discussion-limitations-and-future-research}
+for limiting factors and their implications) as isolated factors. But
+they are all heavily intertwined. These interdependencies are clearly marked
+in figure \ref{fig:framework} with the vectors connecting the single entities.
+
+The software-hardware interdependency exists on an additional level besides the one
+described in chapters \ref{network-effects} and \ref{looking-for-the-system-sellers}
+(direct and indirect network effects in the two-sided market). The hardware
+of the platform defines, via its technical specifications and the control
+interface design, for what kind of games, regarding the level of audio-visual
+ambition and user interface design, it is suitable and to which audience in terms of gamer persona
+it caters. This should heavily influence the games created for the platform.
+On the other hand there is a demand for certain types of games that should be identified by the
+platform producer during the design and positioning process of the next generation console and
+this insight must be taken very seriously.
+
+The value added digital services, including digital games distribution,
+multiplayer options and achievement systems, are based on the available
+hardware and have to be designed specifically to be used with the control
+interface of the platform which requires a specialised HMI (human machine
+interface). The games developed for the platform extend their value by
+incorporating parts of the service portfolio to enrichen the gaming
+experience.
+
+All three identified success factors, hardware, software and services, have to be
+defined during the positioning process to maximise the value proposition for
+the intended target gamer personae and to create a platform that is attractive
+for developers from the technical point of view to foster effective and creative game
+design, with the aim of developing games that will generate high profits, and in
+terms of the potentially achievable market penetration or installed base as a
+precondition for high numbers of games sold in the future.
+
+\section{Framework Application - The Console War of Generation Seven}
+\label{application-of-the-framework}
+%
+The seventh generation of video game consoles lasted from November 2005, beginning with the launch
+of the Microsoft XBox 360, followed by its competitors Playstation 3 (Sony) and
+Nintendo Wii one year later, until April 2016 when the XBox 360 was finally
+discontinued. Nevertheless it effectively ended in November 2013 when the
+current generation's Playstation 4 and XBox One entered the market one year after
+Nintendo's Wii U. The seventh generation is considered to be the one with the longest
+lifespan. The conceptual framework for the determination of success factors for
+video game consoles will now be applied on this generation to investigate its
+aptitude in a ex post analysis.
+
+\subsection{Positioning of the platforms}
+\label{positioning-of-the-platform}
+To understand the decisions leading to the platforms as we experienced them
+during their generation a quick and compressed look on the positioning strategies
+of all three parties is important. \\
+Nintendo's strategy was to appeal to a wide audience of core and casual gamers
+including all age groups up to the seniors, which was a first in video game
+history, and aimed especially at former non-gamers to expand their market. \cite{Casey2006}
+According this positioning Nintendo launched the Wii with a low price tag which
+it could afford by using weaker hardware. (see figure \ref{tab:gen7mastertable})
+The use of cheaper components enabled Nintendo to earn profits from the first
+units sold, effectively using a price skimming strategy. \\
+Microsoft positioned their XBox 360 as an innovative entertainment system in
+addition to it being a high end gaming console and focussed on what they
+evaluated as their key product advantage: "social gaming", mainly online, for a progressive,
+inclusive core gamer market. \cite{Hall2007} The Playstation 3 was put into the
+market by Sony as the definitive high end gaming platform, mainly focussing on
+its advanced technical features for a target audience consisting of hardcore and
+core gamers that it had established with the first two Playstation iterations.
+\cite{Gamesindustry.biz2006} \\
+Microsoft and Sony both chose to use a penetration pricing model with their
+platforms being the loss-leader segment to increase market share and installed
+base. (see figure \ref{tab:gen7mastertable}) Both platforms were priced higher
+than the Wii by a large margin, especially the Playstation 3, due to the used
+expensive high performance components.
+
+\begin{figure}[ht!]
+  \centering
+  \small
+  \begin{tabular}{l l l l}
+    \hline
+                                & Wii       & PS3       & XBox 360      \\ \hline \hline
+      US launch price           & 249.99 \$ & 599 \$    & 399.99 \$     \\
+      EU launch price           & \EUR{249} & \EUR{599} & \EUR{399.99}  \\
+      Production costs          & 160 \$    & 800 \$    & 715 \$        \\
+      $\Delta$                  & 89.99 \$  & -201 \$   & -315.01 \$    \\ \hline
+      Launch date              & 19. Nov. 2006 & 11. Nov. 2006 & 22. Nov. 2005   \\
+      Discontinued              & 20. Oct. 2013  & 29. Sep. 2015  & 20. Apr. 2016 \\
+      Lifespan                  & 6y9m      & 8y10m     & 10y5m         \\ \hline
+      Consoles sold             & 101.18M   & 86.66M    & 85.61M        \\
+      Games sold                & 965.72M   & 969.01M   & 1001.76M      \\
+      Attach Rate
+             & 9.54      & 11.18     & 11.70         \\ \hline
+      Games avl.                & 2808      & 3308      & 3671          \\ \hline
+Games \textgreater 5M sold      & 21        & 28        & 28            \\
+1st party bestsellers           & 66.7\%    & 21.4\%    & 42.9\%        \\ \hline
+      For TOP100                & 1.48M     & 1.99M     & 2.20M         \\ \hline
+Superstars (\textgreater 85\%)  & 34        & 160       & 179           \\ \hline
+                      CPU       & 729 MHz   & 3.2 GHZ    & 3.2 GHZ\\
+                      GPU       & 243 MHz   & 550 MHz    & 500 MHz\\
+                      RAM       & 91 MB     & 512 MB    & 522 MB\\
+                      Video Resolution      & 480p      & 1080p     & 1080p \\
+                      Media capacity        & 8.5 GB    & 50 GB     & 8.5 GB\\ \hline
+  \end{tabular}
+  \caption{Generation Seven overview/ Source: Own design based on data from:
+   \cite{Gamerankings2016},
+   \cite{Vgchartz.com2016},
+   \cite{Snow2005},
+   \cite{Murph2006},
+   \cite{Smith2006},
+   \cite{Block2006},
+   \cite{Nintendo2006},
+   \cite{Fingas2013},
+   \cite{Sony2006},
+   \cite{Wikipedia2016a}
+   }
+  \label{tab:gen7mastertable}
+\end{figure}
+
+Figure \ref{fig:gen7matrix} visualizes the positioning strategies that have been
+applied to the three platforms and already indicates why the Nintendo Wii
+turned out to be the most successful platform of its generation in terms of
+sold units. Nintendo concentrated on those areas where they had an edge
+over Sony and Microsoft, who both opted for nearly congruent strategies. This positioning
+is clearly distinguishable in the success factors that have been developed
+in the previous chapters.
+
+\begin{figure}[ht!]
+\centering
+    \includegraphics[scale=0.3]{Images/gen7matrix_2}
+    \caption{Generation Seven positioning matrix/Source: Own design}
+    \label{fig:gen7matrix}
+\end{figure}
+%
+\subsection{Hardware}
+\label{application-hardware}
+Nintendo deliberately decided to build the Wii from components with a low amount
+of offered performance in terms of audio-visual effects capabilites (see figure \ref{tab:gen7mastertable}
+for the technical specifications). Instead it focussed on the Wiimote as the first main-stream motion-based video games
+control device offering the possibility to play games with a natural
+mapping and an imitation based gameplay. \cite{Casey2006} By going this route
+they effectively lowered the entry barrier for casual gamers and former non-gamers
+by reducing the learning curve. \\
+In terms of audio-visual performance the Wii offered game developers a good enough
+base for games with a high fit to the target audience of the platform, i.e.
+sports games or party games (examples: Wii Sports, Mario Party, Just Dance).
+
+Microsoft and Sony approached the XBox 360 and Playstation 3 with a mindset of
+creating maximum performance gaming rigs. \cite{Spencer2016}, \cite{Crossley2016} and
+\cite{Gamesindustry.biz2006} Sony included complex and expensive components
+like the BluRay player and the Cell processor architecture which made the Playstation 3
+the most powerful platform of its generation in theory. The consequences of this
+decision were initially significant negative cash flows (see $\Delta$ in figure \ref{tab:gen7mastertable}, production issues (blue laser component availability) \cite{EETimes2006}
+and game developers that in the first part of its lifecycle could not max out the
+platform due to its complexity, making the XBox 360 effectively the common denominator in terms of hardware
+performance for the two HD platforms. \cite{Nelson2009}, \cite{Karraker2007} and \cite{Reisinger}
+The XBox 360 was built from standardized high performance components which made developing for it more
+approachable and a distinct hardware design feature (shared memory between main processor and the graphics
+chipset) enabled it to play on par or even outperform the Playstation 3 on
+multiplatform releases. \cite{Crossley2016} and \cite{Anthony2013} Microsoft
+encountered their own major bump in the road with the "Red Ring of Death", a systematic
+hardware failure of its consoles, that cost more than 1.1 billion US\$ to handle
+the warranty claims. \cite{Takahashi2008}
+
+The control interfaces, the XBox 360 gamepad and the Sony Sixaxis controller,
+which was later on replaced by the Dualshock 3 gamepad \cite{Sony2007},
+appealed both to a core/hardcore gamer persona, as they are complex devices,
+offering high precision by using artificial mapping for a simuation gameplay.
+
+All three platforms had been successfully designed to match the needs of their
+target audiences, but Nintendo was able to expand their market by focussing
+on a new target audience (non-gamers and casuals) with its platform.
+
+\subsection{Software}
+\label{application-software}
+The factors determined for success regarding software variety and quality
+are not present as expected in Generation Seven. As figure \ref{tab:gen7mastertable}
+depicts the XBox 360 was the platform with the highest number of available
+games and the highest number of superstar games (average rating \textgreater 85\%).
+This consequently lead to it being the platform with the highest number of
+games sold and leading in the attach rate (average number of games sold per console sold).
+The Wii's attach rate trails behind both HD platforms, leading to the assumption
+that the software part of the framework was not the main determinant for its
+success.
+
+The software portfolio of all three platforms is representative of its positioning.
+Looking at the beststeller games with more than five million copies sold, reveals
+the Wii's best selling games to be part of the miscellaneous and the sports genre,
+perfectly matching the motion control scheme and the casual gamer target audience.
+(see figure \ref{fig:wiibestsellergenres}, examples: Wii Sports, Mario Party, Just Dance) \\
+The XBox 360 ist \emph{the} shooter platform, which coincides with its positioning
+especially for core gamers and online multiplayer gaming via XBox Live. The Playstation 3's
+smash hits are mostly action titles as well as shooter games, which is in line with
+a target audience congruent to Microsoft's one and the technical capabilites of the
+platform.
+
+The amount of superstar games is nearly equal for the HD platforms (PS3: 160, XBox 360: 179,
+see figure \ref{tab:gen7mastertable}) while the Nintendo Wii is beaten in this
+metric by a large margin (34 titles). (see chapter \ref{application-conclusions}
+for possible reasons)
+
+\subsection{Value added digital services}
+\label{application-services}
+Looking at the digital service networks the three platforms established in
+Generation Seven conforms the positioning strategies again. Nintendo introduced
+the "Nintendo Wi-Fi Connection" for the Wii platform, it was available for the
+Nintendo DS before, \cite{Nintendo2014} with the motto: "Simple, Safe, Free". \cite{Famitsu2006}
+It included the possibility to play multiplayer sessions, download digitally distributed
+games (WiiShop Channel\cite{Nintendo2016b}) and access social communities (Nintendo Friend
+Codes \cite{Nintendo2014a}) all without requiring a subscription fee.
+
+Sony and Microsoft established service portfolios for their core gamer target audiences
+including online multiplayer, digital game shops, achievement systems and multimedia channels.
+As both providers require a paid subscription in order to gain access to all
+features and services they offer, they started to give their subscribers free
+games via "XBox Live Gold - Games with Gold" \cite{XBoxLiveGold2016} and
+"Playstation Plus" \cite{PlaystationPlus2016} to create an incentive. (See figure
+\ref{tab:gen7services} for an overview of the basic services offered on each platform)
+
+\begin{figure}[ht!]
+  \centering
+  \small
+  \begin{tabular}{ l l l l l }\hline
+                    & Nintendo Wii      &   Sony Playstation 3    & Microsoft XBox 360 \\ \hline \hline
+                    & Wi-Fi Connection  &   Playstation Network   & XBox Live          \\ \hline
+  digital games shop& \checkmark        & \checkmark              & \checkmark        \\
+  cloud save games  & X                 & \$                      & \checkmark        \\
+  achievements      & X                 & \checkmark              & \checkmark        \\
+  voice chat        & X                 & \checkmark              & \$                \\
+  multiplayer       & \checkmark        & \checkmark              & \$                \\
+  free games        & X                 & \$                      & \$                \\
+  3rd party apps    & \checkmark        & \checkmark              & \checkmark        \\ \hline
+  \end{tabular}
+  \caption{Generation Seven value added digital services/Source: Own design based on \cite{Nintendo2014},
+  \cite{PlaystationPlus2016} and \cite{XBoxLiveGold2016}}
+  \label{tab:gen7services}
+\end{figure}
+
+\subsection{Conclusions}
+\label{application-conclusions}
+In terms of consoles sold the winner of Generation Seven is the Nintendo Wii,
+especially when the pricing model is taken into account, which led Nintendo
+to create a positive cash flow from the first unit sold. Playstation 3 and
+XBox 360 share the second place with nearly equal hardware sales numbers. As
+all sales numbers used in this paper are extrapolated estimates from \cite{Vgchartz.com}
+they can be considered to be equal for the purpose of evaluating their economic performance. Microsoft took the first place
+when it comes to software copies sold during their platform's lifetime, which was the longest of the three platforms
+in Generation Seven with more than ten years, and has
+the highest attach rates. Consequentally it seems like a solid conclusion to assume positive
+cash flows via licensing royalties. The same applies for Sony according \cite{Crossley2016}.
+Depending on the metric used, e.g. console sold vs. total games sold vs attach rate,
+either platform can possibly be some kind of winner in this generation. (see \cite{Bishop2013})
+
+The framework establishes a solid positioning strategy as the base for all
+further determinants, which all three platforms accomplished successfully. Nintendo's
+strategy to embrace a new target audience to expand its market was
+the key to winning the Console War in the end. \cite{Casey2006}, \cite{Carless2006}
+This strategy was adopted coherently in the three success factors software, hardware
+and value added digital services according to the positioning matrix in figure
+\ref{fig:gen7matrix}, with a focus on excelling in the key parts that are
+important for the targeted audience (low entry barriers with natural controls
+and budget friendly pricing model) while being "just good enough" in the
+remaining elements (hardware performance, software variety, amount of superstar games and value
+added digital services). A possible explanation that would have to be
+confirmed with further research could be different buying behaviorial patterns between
+the gamer personae, which could also illuminate the lower attach rate. In
+order to be "good enough" in the software branch of the framework Nintendo
+invested heavily into first party games to maintain a steady software supply
+for its platform. (66\% of the bestselling games for the Wii are first party ones,
+see figure \ref{tab:gen7mastertable})
+
+The two HD consoles also have to be quantified as successful, but each has to be individually
+looked upon. Microsoft had just taken foot in the video game console market with
+the first XBox and could nearly quadruplicate its sales, while Sony
+took a fall from 150M sold PS2. \cite{Vgchartz.com2016} Microsoft had to fight
+the "Red Ring of Death", which may be one reason why they were not able to leave
+at least Sony, battling with production issues and
+the complex system architecture, behind. \cite{Takahashi2008}\\
+But still both platforms were very successful in a generation with no real losing
+party as each was aligned to a special target audience.
+%
+\section{Discussion, limitations and future research}
+\label{discussion-limitations-and-future-research}
+%
+The conceptual framework developed through this seminar paper is suitable to
+determine the basic success factors for video game consoles, nevertheless
+there are some serious limitations to it, mainly inherent limitations for
+conceptual work in general. The significance of the success factors has to
+determined in detail by applying empirical methods, as they seem to have
+different degrees of influence in different generations. (See application on
+Generation Seven in chapter \ref{application-of-the-framework})
+Additional success factors are very likely to exist and should be added to the
+framework to expand its practicality. This applies to the necessity to focus
+on the positioning processes in the video game consoles market, which was only
+covered very briefly. Quality management could be another factor that should be
+taken into account, as unreliable hardware could be a reason for Microsoft not
+being the winner in Generation Seven. (See chapter \ref{application-of-the-framework}
+for the "Red Ring of Death")
+
+Scientific literature investigating the different gamer
+personae and their behavioral patterns is very scarce, so this paper works on basic
+differentiations that are commonly used in the gamer communities. Future research
+could be to illuminate their needs in regards to the digital services or
+behavioral patterns.
+
+The framework and its application are limited in their validity due to the
+restricted availability of highly reliable sales data and scientific literature
+as the video games industry is not yet getting the amount of interest it
+deserves due its economic significance.
+
+Another interesting research option is offered by the rise of mobile gaming,
+i.e. gaming on smartphones and tablets. The next step in the development of
+the conceptual framework for the determination of success factors for
+video games consoles would be to investigate its adaptability to the
+mobile gaming market and researching the success factors for smartphones
+as gaming platforms.
+
+Nevertheless, this paper offers a solid foundation for future research
+with the developed conceptual framework, creating the possibility to
+deepen the knowledge about success factor research in the video games markets.
+
+\cleardoublepage
+\bibliographystyle{apalike-url}
+\renewcommand\bibname{References}
+% \nocite{*}
+\bibliography{literatur}
+\clearpage
+%
+\begin{appendix}
+\section{Additional figures and tables}
+\label{app:figures}
+\singlespacing
+%
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+         \begin{axis}
+              [
+             width=\linewidth*.55,
+                grid=major,
+                grid style={dashed,gray!30},
+                xlabel=Year,
+                ylabel= ,
+                legend pos = north west,
+                x tick label style = {rotate = 0, anchor=north, /pgf/number format/1000 sep= },
+                y tick label style = {rotate = 0, /pgf/number format/1000 sep= },
+                xtick distance = 5,
+                minor x tick num = 1,
+                ymin = 0, xmin = 1975,
+                ymax = 13, xmax = 2006,
+                legend entries = {$Buttons$, $Axis$}
+            ]
+             \addplot table [col sep=comma, x = Year, y = Buttons]{Controller_Buttons_Axis.csv};
+             \addplot table [col sep=comma, x = Year, y = Axis]{Controller_Buttons_Axis.csv};
+         \end{axis}
+      \end{tikzpicture}
+      \caption{Rising complexity shown with the number of buttons and axis on control interfaces - Source: Own design based on photos provided by \cite{Brunner2013}}
+      \label{fig:buttons}
+\end{figure}
+%
+\begin{figure}
+    \centering
+    \small
+    \begin{tabular}{ | p{3.5cm} | r | p{3.5cm} | r | p{3.5cm} | r |}\hline
+		PS4&&XBox One&&Wii U&\\ \hline \hline
+		Title&Score&Title&Score&Title&Score\\ \hline
+		Angry Birds Star Wars&48.33&Angry Birds Star Wars&55&007 Legends&40.67\\ \hline
+		Assassin's Creed IV: Black Flag&85.31&Assassin's Creed IV: Black Flag&81&Assassin's Creed III&83\\ \hline
+		Battlefield 4&85&Battlefield 4&75&Batman: Arkham City - Armored Edition&84.87\\ \hline
+		Call of Duty: Ghosts&78.31&Call of Duty: Ghosts&77.4&Ben 10: Omniverse&30\\ \hline
+		Contrast&58.5&Crimson Dragon&56.11&Call of Duty: Black Ops II&86.07\\ \hline
+		DC Universe Online&72.5&Dead Rising 3&78.45&Chasing Aurora&65.38\\ \hline
+		Escape Plan&69.25&FIFA 14&89.92&Darksiders II&84.96\\ \hline
+		FIFA 14&87.92&Fighter Within&24.68&Epic Mickey 2: The Power of Two&55.42\\ \hline
+		Flower&93.57&Forza Motorsport 5&79.49&Family Party: 30 Great Games Obstacle Arcade&16.2\\ \hline
+		Injustice: Gods Among Us - Ultimate Edition&83.21&Just Dance 2014&63.33&FIFA 13&76.12\\ \hline
+		Just Dance 2014&75&Killer Instinct&74.5&Funky Barn&50.38\\ \hline
+		Killzone Shadow Fall&73.41&Lego Marvel Super Heroes&70.68&Game Party Champions&16.4\\ \hline
+		Knack&58.09&LocoCycle&51.38&Just Dance 4&67.64\\ \hline
+		Lego Marvel Super Heroes&83.24&Madden NFL 25&79.73&Little Inferno&81.8\\ \hline
+		Madden NFL 25&75.96&NBA 2K14&87.12&Mass Effect 3: Special Edition&86.22\\ \hline
+		NBA 2K14&84.18&NBA Live 14&35&Nano Assault Neo&71.83\\ \hline
+		NBA Live 14&46.8&Need for Speed Rivals&79.08&New Super Mario Bros. U&84.48\\ \hline
+		Need for Speed Rivals&80.59&Powerstar Golf&65.8&Nintendo Land&77.98\\ \hline
+		Putty Squad&53&Ryse: Son of Rome&64.3&Puddle&70.58\\ \hline
+		Resogun&85.45&Skylanders: Swap Force&80&Rabbids Land&52.4\\ \hline
+		Sound Shapes&82.67&Zoo Tycoon&70.1&Rise of the Guardians: The Video Game&47.5\\ \hline
+		Super Motherload&68.17&Zumba Fitness: World Party&74.67&Skylanders: Giants&78.17\\ \hline
+		The Playroom&&&&Sonic - All-Stars Racing Transformed&77.64\\ \hline
+		Trine 2: Complete Story&86.33&&&Sports Connection&29.29\\ \hline
+		Warframe&66.97&&&Tank! Tank! Tank!&49.31\\ \hline
+		War Thunder&74.3&&&Tekken Tag Tournament 2: Wii U Edition&83.15\\ \hline
+		&&&&Transformers: Prime – The Game&57.12\\ \hline
+		&&&&Trine 2: Director's Cut&86.33\\ \hline
+		&&&&Warriors Orochi 3 Hyper&66.54\\ \hline
+		&&&&Your Shape: Fitness Evolved 2013&77.14\\ \hline
+		&&&&ZombiU&77.25\\\hline
+    \end{tabular}
+    \caption{Launch lineups of the 8th console generation/ Source: Own design based on \cite{Gamerankings2016}}
+    \label{tab:gen8launchlineup}
+\end{figure}
+%
+\begin{figure}
+	\centering
+ 	\small
+\begin{tabular}{  p{8cm} r }
+   \hline
+    Title&Ranking \\\hline \hline
+    Grand Theft Auto V&96.33\\
+    The Last of Us Remastered&95.70\\
+    Journey&94.80\\
+    Uncharted 4: A Thief's End&92.71\\
+    The Witcher 3: Wild Hunt&92.23\\
+    Metal Gear Solid V: The Phantom Pain&91.59\\
+    The Witcher 3: Wild Hunt - Hearts of Stone&91.19\\
+    Diablo III: Ultimate Evil Edition&91.25\\
+    Overwatch&90.68\\
+    Bloodborne&90.66\\
+    The Witcher 3: Wild Hunt - Blood and Wine&90.00\\
+    Guacamelee! Super Turbo Championship Edition&89.79\\
+    Dragon Age: Inquisition&89.68\\
+    Titanfall 2&89.23\\
+    Dark Souls III&88.93\\
+    Fallout 4&88.60\\
+    Rise of the Tomb Raider: 20 Year Celebration&88.58\\
+    Batman: Arkham Knight&88.45\\
+    The Talos Principle&88.06\\
+    Divinity: Original Sin Enhanced Edition&    87.86\\
+    Velocity 2X&87.50\\
+    Dark Souls II: Scholar of the First Sin&87.23\\
+    Rocket League&87.16\\
+    Odin Sphere Leifthrasir&86.78\\
+    Bloodborne: The Old Hunters&86.75\\
+    Uncharted: The Nathan Drake Collection&86.66\\
+    Valkyria Chronicles Remastered&86.61\\
+    Rogue Legacy&86.60\\
+    Pro Evolution Soccer 2016&86.58\\
+    Middle-earth: Shadow of Mordor&86.55\\
+    OlliOlli2: Welcome to Olliwood&86.46\\
+    Ratchet \& Clank&86.27\\
+    MLB The Show 16&86.19\\
+    Final Fantasy XIV Online: A Realm Reborn&86.08\\
+    Destiny: The Taken King&86.04\\
+    DOOM&85.82\\
+    Tomb Raider: Definitive Edition&85.76\\
+    Resogun&85.45\\
+    The Witness&85.31\\
+    Thumper&85.26\\
+    Pro Evolution Soccer 2017&85.18\\
+    Guilty Gear Xrd -SIGN-&85.13\\ \hline
+    \end{tabular}
+	\caption{Superstar titles in generation 8 on PS4 (Rating over 85\%)/ Source: Own design based on  \cite{Gamerankings2016}}
+		\label{tab:ps4superstars}
+\end{figure}
+%
+\begin{figure} \centering
+ \small
+\begin{tabular}{ p{8cm} r}
+  \hline
+    Title&Ranking \\ \hline \hline
+    Super Mario 3D World&92.56\\
+    Super Smash Bros. for Wii U&92.39\\
+    Bayonetta 2&91.38\\
+    The Legend of Zelda: The Wind Waker HD& 91.08\\
+    Shovel Knight&89.98\\
+    Super Mario Maker&89.41\\
+    Deus Ex: Human Revolution - Director´s Cut&89.30\\
+    Mario Kart 8&88.40\\
+    Pikmin 3&86.46\\
+    Call of Duty: Black Ops II&86.07\\
+    The Legend of Zelda: Twilight Princess HD&85.98\\\hline
+    \end{tabular}
+	\caption{Superstar titles in generation 8 on Wii U (Rating over 85\%)/ Source: Own design based on \cite{Gamerankings2016}}
+	\label{tab:wiiusuperstars}
+\end{figure}
+%
+\begin{figure} \centering
+ \small
+\begin{tabular}{ p{8cm} r}
+  \hline
+    Title&Ranking \\ \hline \hline
+		INSIDE&92.81\\
+		Forza Horizon 3&92.30\\
+		Fallout 4&	89.79\\
+		DOOM&89.04\\
+		Forza Motorsport 6&88.63\\
+		Ori and the Blind Forest&88.52\\
+		Rise of the Tomb Raider&	87.04\\
+		Titanfall&86.71\\
+		Battlefield 1&86.61\\
+		Forza Horizon 2&86.32\\
+		Rare Replay&86.06\\
+		Gears of War 4&85.98\\
+		Halo: The Master Chief Collection&	85.23\\
+		Halo 5: Guardians&84.21\\ \hline
+    \end{tabular}
+	\caption{Superstar titles in generation 8 on XBox One (Rating over 85\%)/ Source: Own design based on \cite{Gamerankings2016}}
+	\label{tab:xbonesuperstars}
+\end{figure}
+%
+\begin{figure}[ht!]
+    \centering
+		\begin{bchart}[step=5,max=55,width=10cm]
+			\bcbar[label=Misc,color=gray]{33.33}
+      \smallskip
+			\bcbar[label=Sports,color=gray]{28.57}
+      \smallskip
+      \bcbar[label=Platform,color=gray]{19.05}
+      \smallskip
+      \bcbar[label=Action,color=gray]{9.52}
+      \smallskip
+      \bcbar[label=Racing,color=gray]{4.76}
+      \smallskip
+      \bcbar[label=Fighting,color=gray]{4.76}
+		\end{bchart}
+    \caption{Wii beststeller games genre distribution (in \% of games with more than 5M copies sold)/Source: Own design based on \cite{Vgchartz.com2016}}
+    \label{fig:wiibestsellergenres}
+\end{figure}
+%
+\begin{figure}[ht!]
+    \centering
+		\begin{bchart}[step=5,max=55,width=10cm]
+			\bcbar[label=Action,color=gray]{42.86}
+      \smallskip
+			\bcbar[label=Shooter,color=gray]{28.57}
+      \smallskip
+      \bcbar[label=Sports,color=gray]{10.71}
+      \smallskip
+      \bcbar[label=RPG,color=gray]{7.14}
+      \smallskip
+      \bcbar[label=Racing,color=gray]{3.57}
+      \smallskip
+      \bcbar[label=Platform,color=gray]{3.57}
+      \smallskip
+      \bcbar[label=Misc,color=gray]{3.57}
+		\end{bchart}
+    \caption{PS3 beststeller games genre distribution (in \% of games with more than 5M copies sold)/Source: Own design based on \cite{Vgchartz.com2016}}
+    \label{fig:ps3bestsellergenres}
+\end{figure}
+%
+%
+\begin{figure}[ht!]
+    \centering
+		\begin{bchart}[step=5,max=55,width=10cm]
+			\bcbar[label=Shooter,color=gray]{53.57}
+      \smallskip
+			\bcbar[label=Action,color=gray]{17.86}
+      \smallskip
+      \bcbar[label=Sports,color=gray]{7.14}
+      \smallskip
+      \bcbar[label=RPG,color=gray]{7.14}
+      \smallskip
+      \bcbar[label=Misc,color=gray]{7.14}
+      \smallskip
+      \bcbar[label=Adventure,color=gray]{3.57}
+      \smallskip
+      \bcbar[label=Racing,color=gray]{3.57}
+		\end{bchart}
+    \caption{XBox 360 beststeller games genre distribution (in \% of games with more than 5M copies sold)/Source: Own design based on \cite{Vgchartz.com2016}}
+    \label{fig:xb360bestsellergenres}
+\end{figure}
+%
+\end{appendix}
+\cleardoublepage
+%
+\section{Declaration of Academic Integrity}\label{eidesstattliche-erklaerung}
+I certify that this seminar paper
+
+``\Arbeitstitel''
+
+is entirely
+my own work, except where I have stated full references to the work of others, and
+that the material contained in this seminar paper has not previously been submitted
+for assessment in any other course of study.
+\vspace{0.75cm}
+
+Ich erkläre hiermit, dass ich meine Seminararbeit mit dem Titel
+
+``\Arbeitstitel''
+
+selbstständig und ohne fremde Hilfe angefertigt habe, und dass ich alle
+von anderen Autoren wörtliche übernommenen Stellen wie auch die sich an
+die Gedankengänge anderer Autoren eng anlehnenden Ausführungen meiner
+Arbeit besonders gekennzeichnet und die Quellen zitiert habe.
+
+\vspace{3cm}
+
+\Ort, den \Abgabedatum
+\end{document}
